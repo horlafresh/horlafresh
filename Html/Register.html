@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Registration Page</title>
+	<link rel="stylesheet" type="text/css" href="../Css/Register.css">
+</head>
+<body>
+
+	<div id="container">
+		
+		<form id="Reg">
+			
+			<h2>Registration Form</h2>
+
+			<label>Full Name</label><br>
+			<input type="text" name="name" placeholder="Enter your full name" id="Fullname"><br><br>
+			<label>Email Address</label><br>
+			<input type="email" name="email" placeholder="Enter your email" id="Email"><br><br>
+			<label>Confirm Email</label><br>
+			<input type="email" name="email" placeholder="Confirm your email" id="Email_two"><br><br>
+			<label>Phone Number</label><br>
+			<input type="tel" name="" placeholder="Enter your number" id="Phone"><br><br>
+			<label>Password</label><br>
+			<input type="password" name="pword" placeholder="Enter your password" id="Pword"><br><br>
+			<label>Confirm Password</label><br>
+			<input type="password" name="pword" placeholder="Confirm your password" id="Pword_two"><br><br>
+
+			<button type="button" id="save">save</button><br><br>
+
+			<p>Already have an account? <a href="">Login.</a> </p>
+
+		</form>
+	</div>
+
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+      <script src="https://www.gstatic.com/firebasejs/6.4.2/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/6.4.2/firebase-firestore.js"></script>
+      <script src="../Jscript/Reg.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#config-web-app -->
+
+</body>
+</html>
