@@ -14,4 +14,19 @@
   console.log("firebase loaded");
   const db= firebase.firestore();
   const firestore = firebase.firestore();
-  let save = document.getElementById('submitData');
+  
+  let Email, Password;
+  const loginpage=document.getElementById("loginbtn");
+  loginpage.addEventListener("click", ()=>{
+    Email= documnet=getElementById("Email").value;
+    Password= document.getElementById("Password").value;
+
+    firebase.auth().signInWithEmailAndPassword(Email, Password).then(function(){
+
+    
+}).catch(function(error){
+    var errorCode=error.code;
+    var errorMessage=error.message;
+    console.log("error:" +error.code);
+  })
+});
