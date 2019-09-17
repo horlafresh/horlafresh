@@ -4,7 +4,7 @@
 }
 
 body{
-	background-image: url(../Image/bg6.jpg);
+	background-image: url(../Image/bg4.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
 }
@@ -37,16 +37,20 @@ header a{
 
 #Nav li a{
 	color: white;
+	font-family: 'Trebuchet MS', sans-serif;
+
 
 }
 
-#button button{
-	margin-top: 450px;
+#btn button {
+	margin-top: 400px;
 	margin-left: 460px;
 	height: 50px;
 	width: 120px;
 	border-radius: 10px;
-	font-size: 15px;
+	font-size: 20px;
+	font-family: 'Trebuchet MS', sans-serif;
+	text-decoration: none;
 }
 
 li {

@@ -12,74 +12,100 @@
    // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   console.log("firebase loaded");
+  const db= firebase.firestore();
+  const firestore = firebase.firestore();
+  let save = document.getElementById('submitData');
+
+     
   
-  //initialize firestore database and save the instance to db variable 
-    const db= firebase.firestore();
-    
-    //create a collection and empty document and save the instance to docRef variable 
-     const docRef = db.collection("messages").doc();
-     let save = document.getElementById('save');
+  let Container, SendingLayout, SuccessLayout, FailedLayout;
+
+ Container = document.getElementById("Container");
+ SendingLayout = document.getElementById("SendingLayout");
+ SuccessLayout = document.getElementById("SuccessLayout");
+ FailedLayout = document.getElementById("FailedLayout");
+ 
+ SendingLayout.style.display = "none";
+ SuccessLayout.style.display = "none";
+ FailedLayout.style.display = "none";
      
    
    
    //declared this global variable so they can be accessed by all functions 
-  let Fname, Email, Cemail, Phone, Pword, Cpword;
-  const date= Date.now();
-  save.addEventListener("click", () => {
-     Fname=document.getElementById("Fullname").value;
-     Email= document.getElementById("Email").value;
-     Cemail= document.getElementById("Email_two").value;
-     //E= Email.includes("@");
-     Phone= document.getElementById("Phone").value;
-     Pword= document.getElementById("Pword").value;     
-     Cpword= document.getElementById("Pword_two").value;
-     
-     
-     if(!Fname.match(/^['a-z A-Z]+$/) || Fname==""){
-        alert("Enter your Fullame")
-    }
+   let Fname, Email, Cemail, Phone, Pass, Cpass;
+   const submitData = document.getElementById("submitData");
+  submitData.addEventListener("click", () => {
+      Fname =document.getElementById("Fullname").value;
+      Email =document.getElementById("Email").value;
+      Cemail =document.getElementById("CEmail").value;
+      Phone =document.getElementById("Phone").value;
+      Pass =document.getElementById("Pword").value;
+      CPass =document.getElementById("CPword").value;
     
-    else if(!Email.includes("@")){
-        alert("invalid email")
-    }
-
-    else if(!Cemail.includes("@")){
-        alert("invalid email")
-
-    }
-        else if(!Phone.match(/^[+0-9]+$/) || Phone.length<11 || Phone.length>11){
-        alert("Your number is incorrect")
-    
-    }
-
-     else if (!Pword.match(/^[a-zA-Z0-9]+$/)||Pword.length < 5) {
-            alert("Input your Password")
-        }
-
-    else if (!Cpword.match(Pword)){
-            alert ("Invalid confirm password")
-        }
-    
-
-    else{
-        alert("Submitted");
-      
-    
-     docRef.set({
-      Fname: Fname,
-      Email: Email,
-      Cemail: Cemail,
-      Phone: Phone,
-      Pword: Pword,
-      Cpword: Pword
-      
+      if (!Fname.match(/^[a-zA-Z]+$/)){
+          alert ("Enter Your  Fullname")
+          
       }
-      ) 
-      .then(function(){
-        console.log("SUCCESSFULLY SAVED");
-      })
-      .catch(function(error){
-        console.log("Got an Error:"+ error);
-      });
-    };
-  }); 
+      
+      else if (!Email.includes("@")) {
+          alert ("Invalid Email ")
+          
+      }
+
+      else if (!Cemail.includes("@")) {
+        alert ("Invalid Email ")
+        
+    }
+      else if (!Phone.match(/^[0-9]+$/)||Phone.length < 11 || Phone.length > 11) {
+          alert ("Incorrect Phone Number")
+          
+      }
+      
+      else if (!Pass.match(/^[a-zA-Z-0-9]+$/)){
+          alert("Incorrect Password")
+          SendData()
+      }
+      else if (!CPass.match(Pass)){
+          alert ("Incorrect Comfirm Password")
+          
+      }
+      else{
+        firebase.auth().createUserWithEmailAndPassword(Email, Pass).catch(function(error) {
+            SendData()
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // ...
+          });
+          
+      }
+      
+  });
+      
+  const SendData = () => {
+    Container.style.display = "none";
+    SendingLayout.style.display = "block";
+    SendToDataBase();
+};
+
+const SendToDataBase = () => {
+    let docRef = db.collection("Container").doc(Phone);
+    docRef.set({
+    Fullname: Fname,
+    Email: Email,
+    CEmail: Cemail,
+    Phone: Phone,
+    Pword: Pass,
+    Cpword: CPass 
+    })
+    .then(function(){
+        SendingLayout.style.display = "none";
+        SuccessLayout.style.display = "block";
+        console.log("Successfully Saved");
+    })
+    .catch(function(error){
+        Container.style.display = "block";
+        FailedLayout.style.display = "block";
+        console.log("Got an error:",error);
+    });
+};

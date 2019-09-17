@@ -5,7 +5,7 @@
 
 body{
 			background-image: unset;
-			background-color: #cccccc;
+			background-color: #f1f1f1;
 		}
 
 #Big_wrapper{
@@ -35,7 +35,7 @@ img{
 	width: 500px;
 	margin-left: 200px;
 	margin-top: 30px;
-	background-color: #ffcccc;
+	background: #fff;
 	padding: 50px;
 }
 
@@ -48,6 +48,8 @@ img{
 	padding: 10px;
 	width: 350px;
 	margin-top: 10px;
+	font-family: 'Trebuchet MS', sans-serif;
+
 }
 
 #msg textarea{
@@ -61,14 +63,15 @@ img{
 	margin-left: 170px;
 	width: 130px;
 	height: 50px;
-	font-family: tahoma;
 	font-size: 20px;
 	border-radius: 15px;
 	color: black;
+	font-family: 'Trebuchet MS', sans-serif;
+
 }
 
 p{
-	font-family: arial;
+	font-family: 'Trebuchet MS', sans-serif;
 	margin-top: 20px;
 	text-align: justify;
 	font-size: 25px;
